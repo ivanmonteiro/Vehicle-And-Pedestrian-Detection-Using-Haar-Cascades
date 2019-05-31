@@ -10,11 +10,11 @@ video_src = 'pedestrians.avi'
 cap = cv2.VideoCapture(video_src)
 
 bike_cascade = cv2.CascadeClassifier('pedestrian.xml')
+car_cascade = cv2.CascadeClassifier('cars.xml')
 
 while True:
     ret, img = cap.read()
 	
-    
     if (type(img) == type(None)):
         break
     
@@ -23,6 +23,11 @@ while True:
 
     for(a,b,c,d) in bike:
         cv2.rectangle(img,(a,b),(a+c,b+d),(0,255,210),4)
+
+    cars = car_cascade.detectMultiScale(gray, 1.1, 2)
+    
+    for (x,y,w,h) in cars:
+        cv2.rectangle(img,(x,y),(x+w,y+h),(0,255,255),2)
     
     cv2.imshow('video', img)
     
