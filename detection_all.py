@@ -8,7 +8,8 @@ print('By Aditya Yogish Pai and Aditya Baliga B')
 
 video_src = 'fight.mp4'
 
-cap = cv2.VideoCapture(video_src)
+#cap = cv2.VideoCapture(video_src)
+cap = cv2.VideoCapture(0)
 
 pedestrians_cascade = cv2.CascadeClassifier('pedestrian.xml')
 car_cascade = cv2.CascadeClassifier('cars.xml')
@@ -19,7 +20,7 @@ while True:
     if (type(img) == type(None)):
         break
     
-    img = imutils.resize(img, width=300)
+    img = imutils.resize(img, width=300, height=300)
 	
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
